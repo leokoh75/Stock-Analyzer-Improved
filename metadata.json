@@ -1,0 +1,8 @@
+{
+  "name": "TradePulse Portfolio & Pair Monitor",
+  "description": "Global market stock monitor, portfolio transaction tracker, pair trend correlation and hedging strategies, and fundamental ratio action advisor across AI, Database, Energy, Quantum, and Chip sectors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
