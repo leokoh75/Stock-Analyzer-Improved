@@ -63,16 +63,16 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({
       }`}>
         
         {/* Modal Top Header */}
-        <div className={`p-6 border-b flex items-start justify-between ${
+        <div className={`p-4 sm:p-6 border-b flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
           darkMode ? 'border-slate-800 bg-[#0D1117]' : 'border-slate-200 bg-slate-50'
         }`}>
           <div>
-            <div className="flex items-center gap-3">
-              <span className="text-3xl font-black text-white tracking-tight">{stock.symbol}</span>
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">{stock.symbol}</span>
+              <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase">
                 {stock.sector} Sector
               </span>
-              <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
+              <span className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-bold border ${
                 stock.signal === 'BUY' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' :
                 stock.signal === 'SELL' ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' :
                 'bg-amber-500/20 text-amber-400 border-amber-500/30'
@@ -80,19 +80,19 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({
                 SIGNAL: {stock.signal}
               </span>
             </div>
-            <h2 className="text-sm font-medium text-slate-400 mt-1">{stock.name}</h2>
+            <h2 className="text-xs sm:text-sm font-medium text-slate-400 mt-1">{stock.name}</h2>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-0 pt-2 sm:pt-0 border-slate-800">
             <button
               onClick={() => onAddTransaction(stock.symbol)}
-              className="px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold text-xs hover:bg-indigo-500 shadow-md shadow-indigo-600/20 transition-all flex items-center gap-1.5"
+              className="px-3 sm:px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold text-xs hover:bg-indigo-500 shadow-md shadow-indigo-600/20 transition-all flex items-center gap-1.5"
             >
               <DollarSign className="w-4 h-4" /> Log Transaction
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-slate-100 hover:bg-slate-700 transition-all"
+              className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-slate-100 hover:bg-slate-700 transition-all shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -100,7 +100,7 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({
         </div>
 
         {/* Main Body */}
-        <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
+        <div className="p-4 sm:p-6 space-y-6 max-h-[80vh] overflow-y-auto">
           
           {/* Price & 52-Week Range Banner */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -217,6 +217,48 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({
             </div>
           </div>
 
+          {/* Volatility & Standard Deviation Risk Metrics Panel */}
+          <div className="p-5 rounded-2xl bg-[#0D1117] border border-indigo-500/30 space-y-3">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+              <div className="flex items-center gap-2">
+                <Activity className="w-5 h-5 text-indigo-400" />
+                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-200">
+                  Standard Deviation (σ) & Volatility Risk Metrics
+                </h3>
+              </div>
+              <span className="text-xs font-mono font-bold text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">
+                Sharpe Ratio: {stock.sharpeRatio.toFixed(2)}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 font-mono text-xs">
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Annualized Std Dev (σ)</div>
+                <div className="text-sm font-black text-indigo-400 mt-0.5">{stock.stdDevAnnualized.toFixed(1)}% p.a.</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Daily Std Dev (σ_daily)</div>
+                <div className="text-sm font-black text-slate-200 mt-0.5">±{stock.stdDevDaily.toFixed(2)}%</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Sharpe Ratio</div>
+                <div className="text-sm font-black text-cyan-400 mt-0.5">{stock.sharpeRatio.toFixed(2)}</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Market Beta (β)</div>
+                <div className="text-sm font-black text-amber-400 mt-0.5">{stock.beta.toFixed(2)}</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Est. 12-Yr CAGR</div>
+                <div className="text-sm font-black text-emerald-400 mt-0.5">+{stock.expectedCagr.toFixed(1)}%</div>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
+                <div className="text-[9px] text-slate-400 uppercase">Target Allocation %</div>
+                <div className="text-sm font-black text-indigo-300 mt-0.5">{stock.goalActionGuidance.targetWeightPercent}%</div>
+              </div>
+            </div>
+          </div>
+
           {/* Ratios Matrix Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
             <div className="p-3 rounded-xl bg-[#0D1117] border border-slate-800 text-center">
@@ -250,6 +292,36 @@ export const StockDetailModal: React.FC<StockDetailModalProps> = ({
             <div className="p-3 rounded-xl bg-[#0D1117] border border-slate-800 text-center">
               <div className="text-[10px] text-slate-400 uppercase">MACD Hist</div>
               <div className="text-base font-bold text-cyan-400">{stock.macd.histogram}</div>
+            </div>
+          </div>
+
+          {/* 12-YEAR SGD 300K GOAL SPECIFIC BUY / SELL / HOLD GUIDANCE */}
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-[#0D1117] to-indigo-950/30 border border-indigo-500/30 space-y-3">
+            <div className="flex items-center justify-between border-b border-indigo-500/20 pb-2">
+              <div className="flex items-center gap-2">
+                <Target className="w-5 h-5 text-indigo-400" />
+                <h3 className="font-bold text-sm text-indigo-300 uppercase tracking-wide">
+                  SGD 300k Goal Strategy (12-Year Horizon)
+                </h3>
+              </div>
+              <span className="text-xs font-mono font-bold text-indigo-400 bg-indigo-500/20 px-2.5 py-0.5 rounded-full border border-indigo-500/30">
+                Role: {stock.goal300kRole}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-1">
+                <span className="text-emerald-400 font-bold flex items-center gap-1">🟢 WHEN TO BUY:</span>
+                <p className="text-slate-300 leading-relaxed text-[11px]">{stock.goalActionGuidance.buyWhen}</p>
+              </div>
+              <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-1">
+                <span className="text-rose-400 font-bold flex items-center gap-1">🔴 WHEN TO SELL / TRIM:</span>
+                <p className="text-slate-300 leading-relaxed text-[11px]">{stock.goalActionGuidance.sellWhen}</p>
+              </div>
+            </div>
+            <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 space-y-1 text-xs">
+              <span className="text-amber-400 font-bold flex items-center gap-1">🟡 WHEN TO HOLD:</span>
+              <p className="text-slate-300 leading-relaxed text-[11px]">{stock.goalActionGuidance.holdWhen}</p>
             </div>
           </div>
 

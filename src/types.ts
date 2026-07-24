@@ -44,6 +44,19 @@ export interface Stock {
   whenToSell: WhenToSellTarget;
   ratioStory: string;
   historicalData: PricePoint[];
+  // Volatility & Standard Deviation Metrics
+  stdDevAnnualized: number; // Annualized Volatility % (σ)
+  stdDevDaily: number; // Daily Standard Deviation % (σ_daily)
+  sharpeRatio: number; // Risk-Adjusted Sharpe Ratio
+  beta: number; // Volatility relative to market (1.0 = SPX)
+  expectedCagr: number; // Estimated 12-Year Compound Annual Growth Rate (%)
+  goal300kRole: string; // Portfolio role for achieving SGD 300k in 12 years
+  goalActionGuidance: {
+    buyWhen: string;
+    sellWhen: string;
+    holdWhen: string;
+    targetWeightPercent: number;
+  };
 }
 
 export interface SpreadPoint {

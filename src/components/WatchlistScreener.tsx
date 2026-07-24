@@ -20,7 +20,7 @@ export const WatchlistScreener: React.FC<WatchlistScreenerProps> = ({
   const [selectedSector, setSelectedSector] = useState<Sector | 'ALL'>('ALL');
   const [selectedSignal, setSelectedSignal] = useState<ActionSignal | 'ALL'>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'price' | 'change' | 'pe' | 'fwdPe' | 'rsi' | 'sector'>('change');
+  const [sortBy, setSortBy] = useState<'price' | 'change' | 'pe' | 'fwdPe' | 'rsi' | 'sector' | 'volatility'>('change');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('table');
 
@@ -61,6 +61,10 @@ export const WatchlistScreener: React.FC<WatchlistScreenerProps> = ({
       case 'rsi':
         valA = a.rsi;
         valB = b.rsi;
+        break;
+      case 'volatility':
+        valA = a.stdDevAnnualized;
+        valB = b.stdDevAnnualized;
         break;
       case 'sector':
         return sortOrder === 'asc' ? a.sector.localeCompare(b.sector) : b.sector.localeCompare(a.sector);
@@ -208,11 +212,14 @@ export const WatchlistScreener: React.FC<WatchlistScreenerProps> = ({
                   <th className="py-3 px-3 cursor-pointer hover:text-indigo-400" onClick={() => toggleSort('change')}>
                     <div className="flex items-center gap-1">24h Change <ArrowUpDown className="w-3 h-3" /></div>
                   </th>
-                  <th className="py-3 px-4 min-w-[160px]">52-Week Range</th>
+                  <th className="py-3 px-3 cursor-pointer hover:text-indigo-400" onClick={() => toggleSort('volatility')}>
+                    <div className="flex items-center gap-1">Volatility (σ_ann) <ArrowUpDown className="w-3 h-3" /></div>
+                  </th>
+                  <th className="py-3 px-4 min-w-[140px]">52-Week Range</th>
                   <th className="py-3 px-3 cursor-pointer hover:text-indigo-400" onClick={() => toggleSort('pe')}>
                     <div className="flex items-center gap-1">P/E (Fwd) <ArrowUpDown className="w-3 h-3" /></div>
                   </th>
-                  <th className="py-3 px-3">Price / Book</th>
+                  <th className="py-3 px-3">Sharpe</th>
                   <th className="py-3 px-3 cursor-pointer hover:text-indigo-400" onClick={() => toggleSort('rsi')}>
                     <div className="flex items-center gap-1">RSI (14) <ArrowUpDown className="w-3 h-3" /></div>
                   </th>
@@ -270,6 +277,18 @@ export const WatchlistScreener: React.FC<WatchlistScreenerProps> = ({
                         </div>
                       </td>
 
+                      {/* Volatility Standard Deviation Column */}
+                      <td className="py-3 px-3 font-mono">
+                        <span className={`px-2 py-0.5 rounded text-[11px] font-bold border ${
+                          stock.stdDevAnnualized > 40 ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' :
+                          stock.stdDevAnnualized > 25 ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
+                          'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        }`}>
+                          {stock.stdDevAnnualized.toFixed(1)}%
+                        </span>
+                        <div className="text-[9px] text-slate-500">±{stock.stdDevDaily.toFixed(2)}%/day</div>
+                      </td>
+
                       {/* 52-Week Range Spectrum */}
                       <td className="py-3 px-4 font-mono text-[11px]">
                         <div className="flex justify-between text-slate-400 text-[10px] mb-1">
@@ -291,9 +310,9 @@ export const WatchlistScreener: React.FC<WatchlistScreenerProps> = ({
                         <div className="text-[10px] text-indigo-400">Fwd: {stock.fwdPeRatio > 0 ? `${stock.fwdPeRatio}x` : 'N/A'}</div>
                       </td>
 
-                      {/* Price / Book */}
-                      <td className="py-3 px-3 font-mono font-medium">
-                        {stock.priceToBook}x
+                      {/* Sharpe Ratio */}
+                      <td className="py-3 px-3 font-mono font-bold text-cyan-400">
+                        {stock.sharpeRatio.toFixed(2)}
                       </td>
 
                       {/* RSI Indicator */}

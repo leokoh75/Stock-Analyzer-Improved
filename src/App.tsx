@@ -14,6 +14,7 @@ import { StockDetailModal } from './components/StockDetailModal';
 import { PairHedgingMatrix } from './components/PairHedgingMatrix';
 import { PortfolioManager } from './components/PortfolioManager';
 import { RealTimeAlerts } from './components/RealTimeAlerts';
+import { GoalPlanner } from './components/GoalPlanner';
 import { BiometricModal } from './components/BiometricModal';
 import { Smartphone, Monitor, ShieldCheck, Wifi, Battery, Signal } from 'lucide-react';
 
@@ -24,7 +25,7 @@ export default function App() {
   const [indices, setIndices] = useState<MarketIndex[]>(INITIAL_INDICES);
   const [alerts, setAlerts] = useState<RealTimeAlert[]>(INITIAL_ALERTS);
 
-  const [activeTab, setActiveTab] = useState<'watchlist' | 'pairs' | 'portfolio' | 'alerts'>('watchlist');
+  const [activeTab, setActiveTab] = useState<'watchlist' | 'pairs' | 'portfolio' | 'alerts' | 'goal'>('watchlist');
   const [isMobileFrame, setIsMobileFrame] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [isLocked, setIsLocked] = useState<boolean>(false);
@@ -125,6 +126,15 @@ export default function App() {
             onSelectStock={(s) => setSelectedStock(s)}
             onAddTransaction={handleOpenTransactionForSymbol}
             onViewPairsForStock={handleViewPairsForStock}
+          />
+        )}
+
+        {activeTab === 'goal' && (
+          <GoalPlanner
+            stocks={stocks}
+            darkMode={darkMode}
+            onSelectStock={(s) => setSelectedStock(s)}
+            onAddTransaction={handleOpenTransactionForSymbol}
           />
         )}
 

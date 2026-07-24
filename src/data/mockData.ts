@@ -54,7 +54,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 8.5
     },
     ratioStory: 'NVIDIA displays a trailing P/E of 52.4x against a much lower Forward P/E of 34.1x, demonstrating massive expected earnings acceleration. The PEG ratio of 1.15 indicates fair valuation relative to its >40% forecasted earnings growth. Low debt-to-equity (0.18) safeguards balance sheet resilience during macro pullbacks.',
-    historicalData: generateHistory(138.25, 3.2)
+    historicalData: generateHistory(138.25, 3.2),
+    stdDevAnnualized: 38.4,
+    stdDevDaily: 2.42,
+    sharpeRatio: 1.48,
+    beta: 1.72,
+    expectedCagr: 22.5,
+    goal300kRole: 'Core High-Growth Engine (20-25% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Accumulate on dips when 30-day volatility spikes and RSI < 50 to maximize 12-yr SGD compounding.',
+      sellWhen: 'Trim up to 30% position if RSI > 80 or allocation exceeds 30% of SGD 300k portfolio target.',
+      holdWhen: 'Hold during normal pullbacks within 1.5 standard deviation Bollinger band channel.',
+      targetWeightPercent: 22
+    }
   },
   {
     symbol: 'MSFT',
@@ -82,7 +94,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 6.0
     },
     ratioStory: 'Microsoft trades at 36.2x current earnings with a solid 29.8x Forward P/E. Price/Book at 12.4x reflects enterprise software moat dominance. Debt/Equity at 0.35 is ultra-safe, yielding 0.72% steady dividend cash return while Azure AI workloads scale.',
-    historicalData: generateHistory(448.90, 1.8)
+    historicalData: generateHistory(448.90, 1.8),
+    stdDevAnnualized: 22.1,
+    stdDevDaily: 1.39,
+    sharpeRatio: 1.32,
+    beta: 1.05,
+    expectedCagr: 14.8,
+    goal300kRole: 'Stable Mega-Cap Compounder (20% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'DCA regularly. Buy aggressively if stock price drops >1.0 std dev below 50-day SMA.',
+      sellWhen: 'Trim only if Azure growth drops below 20% or Forward P/E exceeds 38x.',
+      holdWhen: 'Hold as a low-volatility foundation asset protecting capital towards SGD 300k goal.',
+      targetWeightPercent: 20
+    }
   },
   {
     symbol: 'PLTR',
@@ -110,7 +134,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 5.0
     },
     ratioStory: 'Palantir valuation is stretched at 112.5x P/E and 68.4x Forward P/E, with a PEG ratio of 2.85 indicating overbought speculative sentiment. Zero debt is a balance sheet positive, but high Price/Book (18.2) warrants risk reduction near 52-week highs.',
-    historicalData: generateHistory(42.10, 4.5)
+    historicalData: generateHistory(42.10, 4.5),
+    stdDevAnnualized: 52.6,
+    stdDevDaily: 3.31,
+    sharpeRatio: 0.75,
+    beta: 2.25,
+    expectedCagr: 16.2,
+    goal300kRole: 'High-Volatility Tactical Satellite (5% Max Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Re-entry recommended only after annualized volatility cools and price retraces to $32-34 level.',
+      sellWhen: 'SELL / TRIM immediately when RSI > 72 and valuation multiple exceeds 100x P/E to secure profits.',
+      holdWhen: 'Hold small allocation (<5%) if risk tolerance allows high downside drawdowns.',
+      targetWeightPercent: 5
+    }
   },
 
   // --- DATABASE SECTOR ---
@@ -140,7 +176,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 7.5
     },
     ratioStory: 'Oracle shows a classic cloud transformation ratio profile: Forward P/E drops sharply to 26.5x from 41.8x as Autonomous Database & OCI capacity comes online. Higher Debt/Equity (4.85) is mitigated by $90B+ long-term cloud backlog commitments.',
-    historicalData: generateHistory(172.40, 2.6)
+    historicalData: generateHistory(172.40, 2.6),
+    stdDevAnnualized: 26.2,
+    stdDevDaily: 1.65,
+    sharpeRatio: 1.25,
+    beta: 1.12,
+    expectedCagr: 15.5,
+    goal300kRole: 'Enterprise Infrastructure Compounder (12% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'BUY on breakout confirmation above $170 as multi-cloud OCI revenues compound into SGD 300k goal.',
+      sellWhen: 'Take profit if Forward P/E exceeds 35x or std dev spikes without earnings support.',
+      holdWhen: 'Hold position to harvest steady 0.92% dividend and cloud backlog compounder trajectory.',
+      targetWeightPercent: 12
+    }
   },
   {
     symbol: 'SNOW',
@@ -168,7 +216,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 6.5
     },
     ratioStory: 'Snowflake currently trades negative GAAP P/E with a high Forward P/E of 145.0x. However, 0.00 Debt/Equity and $3.5B+ in net cash provide fundamental downside protection while Cortex AI features roll out.',
-    historicalData: generateHistory(128.60, 3.8)
+    historicalData: generateHistory(128.60, 3.8),
+    stdDevAnnualized: 39.8,
+    stdDevDaily: 2.51,
+    sharpeRatio: 0.68,
+    beta: 1.85,
+    expectedCagr: 12.0,
+    goal300kRole: 'Turnaround Data Cloud Satellite (5% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Add on confirmation of positive quarterly free cash flow and RSI dipping below 35.',
+      sellWhen: 'Sell if price breaks $107.90 support (std dev risk limit exceeded).',
+      holdWhen: 'Hold limited position until consumption trend accelerates.',
+      targetWeightPercent: 5
+    }
   },
   {
     symbol: 'MDB',
@@ -196,7 +256,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 8.0
     },
     ratioStory: 'MongoDB displays improving operational leverage with Forward P/E dropping from 124x to 58.2x. Price/Book (14.8) is historically compressed relative to its 52-week peak ($509.60), presenting a compelling accumulation entry.',
-    historicalData: generateHistory(285.30, 3.5)
+    historicalData: generateHistory(285.30, 3.5),
+    stdDevAnnualized: 41.2,
+    stdDevDaily: 2.60,
+    sharpeRatio: 1.10,
+    beta: 1.68,
+    expectedCagr: 18.0,
+    goal300kRole: 'High-Beta Growth Accumulator (8% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Accumulate when price trades within lower 30% of 52-week range ($210-290).',
+      sellWhen: 'Trim near $340 target price or if std dev spikes above 50%.',
+      holdWhen: 'Hold during vector search adoption cycle.',
+      targetWeightPercent: 8
+    }
   },
 
   // --- ENERGY SECTOR ---
@@ -226,7 +298,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 7.0
     },
     ratioStory: 'Vistra is a premier AI energy play. Forward P/E of 18.2x yields an attractive PEG ratio of 0.88 (under-valued relative to earnings growth). The 0.70% dividend is backed by long-term nuclear generation contracts.',
-    historicalData: generateHistory(124.50, 4.1)
+    historicalData: generateHistory(124.50, 4.1),
+    stdDevAnnualized: 42.1,
+    stdDevDaily: 2.65,
+    sharpeRatio: 1.62,
+    beta: 1.45,
+    expectedCagr: 21.0,
+    goal300kRole: 'AI Infrastructure Energy Engine (10% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'BUY aggressively on pullbacks to 20-day EMA. High Sharpe Ratio (1.62) accelerates 12-yr growth.',
+      sellWhen: 'Trim above $148 or if PEG ratio expands past 1.50.',
+      holdWhen: 'Hold while baseload power PPAs remain under long-term contract.',
+      targetWeightPercent: 10
+    }
   },
   {
     symbol: 'XOM',
@@ -254,7 +338,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 5.5
     },
     ratioStory: 'Exxon Mobil represents fundamental value stability: 14.2x P/E, 12.8x Forward P/E, and low Price/Book (2.1x). Low Debt/Equity (0.18) and a generous 3.25% dividend yield offer excellent volatility hedging against tech market pullbacks.',
-    historicalData: generateHistory(118.20, 1.5)
+    historicalData: generateHistory(118.20, 1.5),
+    stdDevAnnualized: 16.5,
+    stdDevDaily: 1.04,
+    sharpeRatio: 0.92,
+    beta: 0.58,
+    expectedCagr: 8.5,
+    goal300kRole: 'Defensive Capital Buffer & Dividend Anchor (10% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Buy when oil prices drop or yield rises above 3.5% to stabilize portfolio volatility.',
+      sellWhen: 'Trim if crude oil supercycle peaks or dividend payout ratio deteriorates.',
+      holdWhen: 'HOLD to provide low-volatility (std dev = 16.5%) downside shielding for SGD 300k target.',
+      targetWeightPercent: 10
+    }
   },
   {
     symbol: 'ENPH',
@@ -282,7 +378,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 8.0
     },
     ratioStory: 'Enphase Forward P/E sits at 28.6x down from 42.1x trailing. RSI of 38.2 indicates oversold cyclical sentiment. Low distance to 52-week low ($70.50) creates an asymmetrical risk/reward ratio.',
-    historicalData: generateHistory(88.40, 4.2)
+    historicalData: generateHistory(88.40, 4.2),
+    stdDevAnnualized: 48.5,
+    stdDevDaily: 3.05,
+    sharpeRatio: 0.55,
+    beta: 1.95,
+    expectedCagr: 11.2,
+    goal300kRole: 'Cyclical Clean Tech Rebound Play (4% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Buy small tranche only when RSI drops below 32 near 52W low ($70-75).',
+      sellWhen: 'Sell above $110 or if interest rate headwinds persist.',
+      holdWhen: 'Hold minimal position until channel destocking completes.',
+      targetWeightPercent: 4
+    }
   },
 
   // --- QUANTUM SECTOR ---
@@ -312,7 +420,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 12.0
     },
     ratioStory: 'IonQ is an early-stage pure play quantum leader. While GAAP earnings remain negative, zero long-term debt (0.01 D/E) and $380M cash runway support multi-year commercial scaling towards #AQ 64 hardware milestones.',
-    historicalData: generateHistory(18.75, 6.2)
+    historicalData: generateHistory(18.75, 6.2),
+    stdDevAnnualized: 65.2,
+    stdDevDaily: 4.10,
+    sharpeRatio: 0.88,
+    beta: 2.45,
+    expectedCagr: 25.0,
+    goal300kRole: 'High-Volatility Asymmetric Multiplier (4% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Buy small recurring positions on major pullbacks. Volatility (65.2%) offers 5x-10x long-term upside potential.',
+      sellWhen: 'Take 50% profit if price doubles or exceeds $26 target.',
+      holdWhen: 'Hold strict 4% allocation limit to avoid excessive portfolio volatility.',
+      targetWeightPercent: 4
+    }
   },
   {
     symbol: 'IBM',
@@ -340,7 +460,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 5.0
     },
     ratioStory: 'IBM offers a hybrid profile: mature 23.5x P/E with high-yield 3.08% dividend payouts, while maintaining world-leading quantum hardware research (Heron 133-qubit processors). Excellent lower-beta anchor for Quantum portfolios.',
-    historicalData: generateHistory(218.60, 2.1)
+    historicalData: generateHistory(218.60, 2.1),
+    stdDevAnnualized: 21.0,
+    stdDevDaily: 1.32,
+    sharpeRatio: 1.05,
+    beta: 0.85,
+    expectedCagr: 10.5,
+    goal300kRole: 'Low-Beta Quantum & Dividend Stabilizer (8% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'Buy when dividend yield reaches >3.2% or price drops near $200.',
+      sellWhen: 'Trim above $240 or if Red Hat cloud growth slows under 8%.',
+      holdWhen: 'HOLD for dividend reinvestment compounding into SGD 300k target.',
+      targetWeightPercent: 8
+    }
   },
   {
     symbol: 'QBTS',
@@ -368,7 +500,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 15.0
     },
     ratioStory: 'D-Wave trades at speculative micro-cap levels ($1.85). Negative P/E (-5.4) and ongoing equity dilution necessitate disciplined stop losses and strict position sizing.',
-    historicalData: generateHistory(1.85, 8.5)
+    historicalData: generateHistory(1.85, 8.5),
+    stdDevAnnualized: 85.4,
+    stdDevDaily: 5.38,
+    sharpeRatio: 0.25,
+    beta: 3.10,
+    expectedCagr: 5.0,
+    goal300kRole: 'Speculative Micro-Cap (0-1% Max Allocation)',
+    goalActionGuidance: {
+      buyWhen: 'Avoid new capital until cash burn stabilizes.',
+      sellWhen: 'SELL / Exit on spikes to preserve core SGD 300k goal capital.',
+      holdWhen: 'Hold only minimal lottery ticket position (<1%).',
+      targetWeightPercent: 1
+    }
   },
 
   // --- CHIPS SECTOR ---
@@ -398,7 +542,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 7.0
     },
     ratioStory: 'TSMC is the indispensable backbone of advanced silicon. A Forward P/E of 21.4x against a PEG of 1.05 represents attractive fundamental pricing for >20% long-term CAGR. Healthy 1.15% dividend backed by strong free cash flow.',
-    historicalData: generateHistory(188.40, 2.8)
+    historicalData: generateHistory(188.40, 2.8),
+    stdDevAnnualized: 28.1,
+    stdDevDaily: 1.77,
+    sharpeRatio: 1.55,
+    beta: 1.28,
+    expectedCagr: 19.5,
+    goal300kRole: 'Foundry Monopoly Core Compounder (15% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'BUY consistently. Low PEG (1.05) and 28.1% std dev offer premier risk-adjusted returns toward SGD 300k.',
+      sellWhen: 'Trim if Forward P/E expands past 32x or geopolitical risk escalates.',
+      holdWhen: 'HOLD as primary semiconductor core holding.',
+      targetWeightPercent: 15
+    }
   },
   {
     symbol: 'AVGO',
@@ -426,7 +582,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 6.5
     },
     ratioStory: 'Broadcom exhibits dramatic margin leverage: Forward P/E drops from trailing 68.5x to 28.9x. PEG of 1.35 and 1.22% dividend yield showcase compounding cash flow strength across custom silicon networking.',
-    historicalData: generateHistory(176.10, 3.1)
+    historicalData: generateHistory(176.10, 3.1),
+    stdDevAnnualized: 31.0,
+    stdDevDaily: 1.95,
+    sharpeRatio: 1.42,
+    beta: 1.38,
+    expectedCagr: 18.2,
+    goal300kRole: 'Custom AI Silicon Compounder (12% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'BUY on minor pullbacks. Custom ASIC market growth provides strong cash compounding.',
+      sellWhen: 'Trim near $205 target price.',
+      holdWhen: 'HOLD for dividend growth and AI networking expansion.',
+      targetWeightPercent: 12
+    }
   },
   {
     symbol: 'ASML',
@@ -454,7 +622,19 @@ export const INITIAL_STOCKS: Stock[] = [
       trailingStopPercent: 8.0
     },
     ratioStory: 'ASML is down over 25% from 52-week highs ($1,056), compressing Forward P/E to 27.2x. Sole supplier of EUV photolithography tools worldwide makes this a high-conviction fundamental buy on cyclical weakness.',
-    historicalData: generateHistory(742.00, 3.4)
+    historicalData: generateHistory(742.00, 3.4),
+    stdDevAnnualized: 34.0,
+    stdDevDaily: 2.14,
+    sharpeRatio: 1.28,
+    beta: 1.32,
+    expectedCagr: 16.5,
+    goal300kRole: 'Monopoly Lithography Engine (10% Target Weight)',
+    goalActionGuidance: {
+      buyWhen: 'BUY aggressively while price sits >20% below 52-week highs for asymmetrical CAGR to reach SGD 300k.',
+      sellWhen: 'Trim when stock re-tests $950-1000 level.',
+      holdWhen: 'HOLD during EUV tool delivery cycles.',
+      targetWeightPercent: 10
+    }
   }
 ];
 

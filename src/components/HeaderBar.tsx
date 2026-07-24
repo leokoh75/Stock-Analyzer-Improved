@@ -2,8 +2,8 @@ import React from 'react';
 import { Activity, ShieldCheck, Lock, Moon, Sun, Smartphone, Monitor, Bell, TrendingUp } from 'lucide-react';
 
 interface HeaderBarProps {
-  activeTab: 'watchlist' | 'pairs' | 'portfolio' | 'alerts';
-  setActiveTab: (tab: 'watchlist' | 'pairs' | 'portfolio' | 'alerts') => void;
+  activeTab: 'watchlist' | 'pairs' | 'portfolio' | 'alerts' | 'goal';
+  setActiveTab: (tab: 'watchlist' | 'pairs' | 'portfolio' | 'alerts' | 'goal') => void;
   isMobileFrame: boolean;
   setIsMobileFrame: (val: boolean) => void;
   darkMode: boolean;
@@ -67,6 +67,16 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
               }`}
             >
               Watchlist & Screener
+            </button>
+            <button
+              onClick={() => setActiveTab('goal')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1 ${
+                activeTab === 'goal'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60 font-semibold'
+              }`}
+            >
+              🎯 12-Yr SGD 300k Goal
             </button>
             <button
               onClick={() => setActiveTab('pairs')}
@@ -166,35 +176,43 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         </div>
 
         {/* Mobile Sub-Navigation Bar */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-slate-800/60 overflow-x-auto text-xs">
+        <div className="flex md:hidden items-center justify-start sm:justify-around py-2 border-t border-slate-800/60 overflow-x-auto text-xs whitespace-nowrap no-scrollbar gap-1 px-2">
           <button
             onClick={() => setActiveTab('watchlist')}
-            className={`px-3 py-1 rounded-md ${
-              activeTab === 'watchlist' ? 'bg-indigo-600 text-white font-semibold' : 'text-slate-400'
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              activeTab === 'watchlist' ? 'bg-indigo-600 text-white font-semibold shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             Screener
           </button>
           <button
+            onClick={() => setActiveTab('goal')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              activeTab === 'goal' ? 'bg-indigo-600 text-white font-semibold shadow-sm' : 'text-slate-300 font-medium hover:text-white'
+            }`}
+          >
+            🎯 300k Goal
+          </button>
+          <button
             onClick={() => setActiveTab('pairs')}
-            className={`px-3 py-1 rounded-md ${
-              activeTab === 'pairs' ? 'bg-indigo-600 text-white font-semibold' : 'text-slate-400'
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              activeTab === 'pairs' ? 'bg-indigo-600 text-white font-semibold shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             Pairs
           </button>
           <button
             onClick={() => setActiveTab('portfolio')}
-            className={`px-3 py-1 rounded-md ${
-              activeTab === 'portfolio' ? 'bg-indigo-600 text-white font-semibold' : 'text-slate-400'
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              activeTab === 'portfolio' ? 'bg-indigo-600 text-white font-semibold shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             Portfolio
           </button>
           <button
             onClick={() => setActiveTab('alerts')}
-            className={`px-3 py-1 rounded-md relative ${
-              activeTab === 'alerts' ? 'bg-indigo-600 text-white font-semibold' : 'text-slate-400'
+            className={`px-3 py-1.5 rounded-lg relative transition-all ${
+              activeTab === 'alerts' ? 'bg-indigo-600 text-white font-semibold shadow-sm' : 'text-slate-400 hover:text-white'
             }`}
           >
             Alerts
